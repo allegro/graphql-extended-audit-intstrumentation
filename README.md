@@ -32,9 +32,9 @@ GraphQL audit creator can take extra option like
 
 ### Custom audit log destination data source
 
-You can provide your own implementation of ``AuditLogSender`` so that the logs can, for example, be sent to the database, to the event queue or to a file.
+You can provide your own implementation of ``AuditLogSender`` to sent logs somewhere (i.e. database, event queue, or a file).
 
-Please implement ``AuditLogSender``
+Implement ``AuditLogSender``
 
 ```
  /**
@@ -51,7 +51,7 @@ Please implement ``AuditLogSender``
 
 ### Custom user context provider
 
-Please implement interface ``UserProvider`` 
+Implement interface ``UserProvider`` 
 
 ```
   /**
@@ -68,11 +68,11 @@ Please implement interface ``UserProvider``
 
 ### Anonymization
 
-Anonymization can be enabled to not send data which you can easily pick up.
-This function ensures compliance of the log audit with the GDPR.
-Thanks to it, you can, for example, anonymize personal data in an audit log.
+Anonymization can be enabled to not send data that you can easily pick up.
+This function ensures compliance with the log audit with the GDPR.
+Thanks to it you can, for example, anonymize personal data in an audit log.
 
-Please implement interface ``AnonymizedFieldsSetupProvider``
+Implement interface ``AnonymizedFieldsSetupProvider``
 
 ```
   /**
@@ -90,10 +90,11 @@ Please implement interface ``AnonymizedFieldsSetupProvider``
 
 ### Extra field
 
-Extra field like input query field can be logged.
-It can be useful in situations where we want the audit log to include fields even if the client does not ask for them, 
-for example, the client fetch the user's email, and we want that users ID to be included in each audit log containing user entity regardless the client fetch the user ID.
-Please implement interface ``AdditionalFieldsSetupProvider``
+An extra field like an input query field can be logged.
+It can be useful in situations where we want the audit log to include fields even if the client does not ask for them.
+For example, the client fetches the user's email, and we want that user's ID to be included in each audit log containing user entity regardless of the client fetches the user ID.
+
+Implement interface ``AdditionalFieldsSetupProvider``
 
 ```
   /**
