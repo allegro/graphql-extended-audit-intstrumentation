@@ -4,7 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
-import pl.allegro.tech.build.axion.release.domain.PredefinedVersionCreator.*
+import pl.allegro.tech.build.axion.release.domain.PredefinedVersionCreator.VERSION_WITH_BRANCH
 import pl.allegro.tech.build.axion.release.domain.TagNameSerializationConfig
 
 buildscript {
@@ -23,14 +23,14 @@ plugins {
     id("maven-publish")
     id("com.adarshr.test-logger") version "2.0.0"
     id("net.ltgt.errorprone") version "1.3.0"
-    id("pl.allegro.tech.build.axion-release") version "1.12.1"
+    id ("pl.allegro.tech.build.axion-release") version "1.12.1"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     checkstyle
 }
 
 scmVersion {
     tag = TagNameSerializationConfig()
-    tag.prefix = "graphql-audit"
+    tag.prefix = "graphql-extended-audit-instrumentation"
     versionCreator = VERSION_WITH_BRANCH.versionCreator
 }
 
