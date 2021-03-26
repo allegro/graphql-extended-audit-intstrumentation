@@ -4,6 +4,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "graphql-audit"
+rootProject.name = "extended-audit-instrumentation"
 
-include("graphql-audit")
+include("extended-audit-instrumentation")
