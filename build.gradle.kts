@@ -1,11 +1,11 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.ltgt.gradle.errorprone.errorprone
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
-import pl.allegro.tech.build.axion.release.domain.PredefinedVersionCreator.VERSION_WITH_BRANCH
-import pl.allegro.tech.build.axion.release.domain.TagNameSerializationConfig
+import java.time.Duration
 
 buildscript {
     repositories {
@@ -19,23 +19,14 @@ buildscript {
 plugins {
     id("java")
     id("groovy")
-    id("application")
     id("maven-publish")
+    id("java-library")
     id("com.adarshr.test-logger") version "2.0.0"
     id("net.ltgt.errorprone") version "1.3.0"
     id ("pl.allegro.tech.build.axion-release") version "1.12.1"
     id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     checkstyle
-}
-
-scmVersion {
-    tag = TagNameSerializationConfig()
-    tag.prefix = "graphql-extended-audit-instrumentation"
-    versionCreator = VERSION_WITH_BRANCH.versionCreator
-}
-
-application {
-    mainClassName = "pl.allegro.tech.graphqlaudit.auditlog.AuditLogInstrumentationCreator"
 }
 
 repositories {
@@ -111,3 +102,59 @@ tasks.named("check") {
 tasks.withType<Wrapper> {
     gradleVersion = "6.8.0"
 }
+
+tasks.withType<ShadowJar> {
+    archiveBaseName.set("extended-audit-instrumentation")
+    minimize()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+version = scmVersion.version
+group = "pl.allegro.tech.graphql"
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            pom {
+                name.set("extended-audit-instrumentation")
+                description.set("Graphql extended audit instrumentation")
+                url.set("https://github.com/allegro/graphql-extended-audit-intstrumentation")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("dkubicki")
+                        name.set("Dawid Kubicki")
+                    }
+                }
+                scm {
+                    connection.set("scm:git@github.com:allegro/graphql-extended-audit-intstrumentation")
+                    developerConnection.set("scm:git@github.com:allegro/graphql-extended-audit-intstrumentation.git")
+                    url.set("https://github.com/allegro/graphql-extended-audit-intstrumentation")
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    connectTimeout.set(Duration.ofMinutes(10))
+    clientTimeout.set(Duration.ofMinutes(10))
+
+    repositories {
+        sonatype {
+            username.set(System.getenv("SONATYPE_USERNAME"))
+            password.set(System.getenv("SONATYPE_PASSWORD"))
+        }
+    }
+}
+
