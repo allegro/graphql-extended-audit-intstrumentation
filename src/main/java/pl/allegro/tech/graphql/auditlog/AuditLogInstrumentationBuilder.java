@@ -11,10 +11,10 @@ public class AuditLogInstrumentationBuilder {
   private AuditLogSender auditLogSender = new AuditLogSenderImpl();
   private UserProvider userProvider = new AnonymousUserProvider();
   private AuditLogAnonymizer auditLogAnonymizer = new AuditLogAnonymizer(
-      new DefaultAnonymizedFieldsSetupChecker(
+      new DefaultAnonymizedFieldsSetupPreconditions(
           JsonUtil.jsonFieldSetups(ANONYMIZED_FIELDS_CONFIG_FILE)));
   private AuditLogAdditionalFieldFetcher auditLogAdditionalFieldFetcher =
-      new AuditLogAdditionalFieldFetcher(new DefaultAdditionalFieldsSetupChecker(
+      new AuditLogAdditionalFieldFetcher(new DefaultAdditionalFieldsSetupPreconditions(
           JsonUtil.jsonFieldSetups(ADDITIONAL_FIELDS_CONFIG_FILE)));
 
   public AuditLogInstrumentationBuilder() {

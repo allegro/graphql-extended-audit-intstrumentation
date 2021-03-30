@@ -1,18 +1,15 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocation
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.ltgt.gradle.errorprone.errorprone
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import pl.allegro.tech.build.axion.release.domain.PredefinedVersionCreator.VERSION_WITH_BRANCH
 import java.time.Duration
 
 buildscript {
     repositories {
         gradlePluginPortal()
         mavenCentral()
-    }
-    dependencies {
     }
 }
 
@@ -23,10 +20,17 @@ plugins {
     id("java-library")
     id("com.adarshr.test-logger") version "2.0.0"
     id("net.ltgt.errorprone") version "1.3.0"
-    id ("pl.allegro.tech.build.axion-release") version "1.12.1"
+    id("pl.allegro.tech.build.axion-release") version "1.13.1"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
+    id ("org.barfuin.gradle.taskinfo") version "1.0.5"
+    signing
     checkstyle
+}
+
+scmVersion {
+    tag.prefix = "extended-audit-instrumentation"
+    versionCreator = VERSION_WITH_BRANCH.versionCreator
 }
 
 repositories {
@@ -36,12 +40,12 @@ repositories {
 dependencies {
     // Other
     implementation("com.fasterxml.jackson.module:jackson-module-paranamer:2.11.1")
-    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    api("javax.xml.bind:jaxb-api:2.3.1")
     implementation("io.sentry:sentry-logback:1.7.28")
 
     implementation("io.vavr:vavr:0.10.3")
     implementation("javax.inject:javax.inject:1")
-    implementation( "com.google.guava:guava:30.1-jre")
+    implementation("com.google.guava:guava:30.1-jre")
     errorprone("com.google.errorprone:error_prone_core:2.5.1")
 
     // GraphQL
@@ -62,6 +66,8 @@ dependencies {
 }
 
 java {
+    withJavadocJar()
+    withSourcesJar()
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
@@ -76,7 +82,7 @@ tasks.withType<Test> {
     maxParallelForks = 1
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
-        events = setOf(PASSED, SKIPPED, FAILED, STANDARD_ERROR )
+        events = setOf(PASSED, SKIPPED, FAILED, STANDARD_ERROR)
     }
     useJUnitPlatform()
 }
@@ -96,51 +102,59 @@ tasks.withType<Checkstyle>().configureEach {
 }
 
 tasks.named("check") {
-        dependsOn("checkstyleMain")
-    }
+    dependsOn("checkstyleMain")
+}
 
 tasks.withType<Wrapper> {
-    gradleVersion = "6.8.0"
+    gradleVersion = "6.8.3"
+}
+
+tasks.create<ConfigureShadowRelocation>("relocateShadowJar") {
+    target = tasks.shadowJar.get()
+}
+
+tasks.named("shadowJar") {
+    dependsOn("relocateShadowJar")
 }
 
 tasks.withType<ShadowJar> {
-    archiveBaseName.set("extended-audit-instrumentation")
+    archiveClassifier.set("")
     minimize()
 }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
-version = scmVersion.version
+project.version = scmVersion.version
 group = "pl.allegro.tech.graphql"
 
 publishing {
     publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-            pom {
-                name.set("extended-audit-instrumentation")
-                description.set("Graphql extended audit instrumentation")
+        val publication = create<MavenPublication>("sonatype")
+        project.shadow.component(publication)
+        artifacts {
+            tasks.named(JavaPlugin.JAVADOC_TASK_NAME)
+            tasks.named(JavaPlugin.JAR_TASK_NAME)
+        }
+        publication.pom {
+            name.set("extended-audit-instrumentation")
+            description.set("Graphql extended audit instrumentation")
+            url.set("https://github.com/allegro/graphql-extended-audit-intstrumentation")
+            licenses {
+                license {
+                    name.set("The Apache License, Version 2.0")
+                    url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                }
+            }
+
+            developers {
+                developer {
+                    id.set("dkubicki")
+                    name.set("Dawid Kubicki")
+                }
+            }
+
+            scm {
+                connection.set("scm:git@github.com:allegro/graphql-extended-audit-intstrumentation")
+                developerConnection.set("scm:git@github.com:allegro/graphql-extended-audit-intstrumentation.git")
                 url.set("https://github.com/allegro/graphql-extended-audit-intstrumentation")
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("dkubicki")
-                        name.set("Dawid Kubicki")
-                    }
-                }
-                scm {
-                    connection.set("scm:git@github.com:allegro/graphql-extended-audit-intstrumentation")
-                    developerConnection.set("scm:git@github.com:allegro/graphql-extended-audit-intstrumentation.git")
-                    url.set("https://github.com/allegro/graphql-extended-audit-intstrumentation")
-                }
             }
         }
     }
@@ -158,3 +172,13 @@ nexusPublishing {
     }
 }
 
+if (!System.getenv("GPG_KEY_ID").isNullOrBlank()) {
+    signing {
+        useInMemoryPgpKeys(
+            System.getenv("GPG_KEY_ID"),
+            System.getenv("GPG_PRIVATE_KEY"),
+            System.getenv("GPG_PRIVATE_KEY_PASSWORD")
+        )
+        sign(publishing.publications)
+    }
+}

@@ -5,5 +5,3 @@ pluginManagement {
 }
 
 rootProject.name = "extended-audit-instrumentation"
-
-include("extended-audit-instrumentation")
