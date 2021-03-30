@@ -1,6 +1,7 @@
 graphql-audit
 =====
 ![Java CI with Gradle status](https://github.com/allegro/graphql-extended-audit-intstrumentation/actions/workflows/ci.yml/badge.svg?branch=master)
+![Maven Central](https://img.shields.io/maven-central/v/pl.allegro.tech.graphql/extended-audit-intstrumentation)
 
 *graphql audit lib*
 

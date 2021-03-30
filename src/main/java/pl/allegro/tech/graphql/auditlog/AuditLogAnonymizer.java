@@ -11,9 +11,9 @@ import pl.allegro.tech.graphql.auditlog.model.ResultData.ObjectResultData;
 
 class AuditLogAnonymizer {
 
-  private final AnonymizedFieldsSetupChecker anonymizedFieldsSetupChecker;
+  private final AnonymizedFieldsSetupPreconditions anonymizedFieldsSetupChecker;
 
-  public AuditLogAnonymizer(AnonymizedFieldsSetupChecker anonymizedFieldsSetupChecker) {
+  public AuditLogAnonymizer(AnonymizedFieldsSetupPreconditions anonymizedFieldsSetupChecker) {
     this.anonymizedFieldsSetupChecker = requireNonNull(anonymizedFieldsSetupChecker);
   }
 

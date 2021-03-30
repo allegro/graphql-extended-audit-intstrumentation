@@ -31,10 +31,10 @@ class AuditLogAdditionalFieldFetcher {
   private static final Logger logger =
       LoggerFactory.getLogger(AuditLogAdditionalFieldFetcher.class);
 
-  private final AdditionalFieldsSetupChecker additionalFieldsSetupChecker;
+  private final AdditionalFieldsSetupPreconditions additionalFieldsSetupChecker;
 
   public AuditLogAdditionalFieldFetcher(
-      AdditionalFieldsSetupChecker additionalFieldsSetupChecker) {
+      AdditionalFieldsSetupPreconditions additionalFieldsSetupChecker) {
     this.additionalFieldsSetupChecker = requireNonNull(additionalFieldsSetupChecker);
   }
 

@@ -1,12 +1,12 @@
 package pl.allegro.tech.graphql.auditlog.fixture
 
-import pl.allegro.tech.graphql.auditlog.AnonymizedFieldsSetupChecker
+import pl.allegro.tech.graphql.auditlog.AnonymizedFieldsSetupPreconditions
 import pl.allegro.tech.graphql.auditlog.FieldSetup
 
-class UpdatableAnonymizedFieldsSetupChecker implements AnonymizedFieldsSetupChecker {
+class UpdatableAnonymizedFieldsSetupPreconditions implements AnonymizedFieldsSetupPreconditions {
     private final List<FieldSetup> overriddenAnonymizedFields
 
-    UpdatableAnonymizedFieldsSetupChecker() {
+    UpdatableAnonymizedFieldsSetupPreconditions() {
         overriddenAnonymizedFields = new ArrayList<>()
     }
 

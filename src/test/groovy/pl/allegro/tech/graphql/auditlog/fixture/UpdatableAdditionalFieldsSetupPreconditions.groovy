@@ -1,12 +1,12 @@
 package pl.allegro.tech.graphql.auditlog.fixture
 
-import pl.allegro.tech.graphql.auditlog.AdditionalFieldsSetupChecker
+import pl.allegro.tech.graphql.auditlog.AdditionalFieldsSetupPreconditions
 import pl.allegro.tech.graphql.auditlog.FieldSetup
 
-class UpdatableAdditionalFieldsSetupChecker implements AdditionalFieldsSetupChecker {
+class UpdatableAdditionalFieldsSetupPreconditions implements AdditionalFieldsSetupPreconditions {
     private final List<FieldSetup> overriddenAdditionalFields
 
-    UpdatableAdditionalFieldsSetupChecker() {
+    UpdatableAdditionalFieldsSetupPreconditions() {
         overriddenAdditionalFields = new ArrayList<>()
     }
 
