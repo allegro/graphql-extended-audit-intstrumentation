@@ -129,8 +129,8 @@ publishing {
         val publication = create<MavenPublication>("sonatype")
         project.shadow.component(publication)
         artifacts {
-            tasks.named(JavaPlugin.JAVADOC_TASK_NAME)
-            tasks.named(JavaPlugin.JAR_TASK_NAME)
+            tasks.named("javadocJar")
+            tasks.named("sourcesJar")
         }
         publication.pom {
             name.set("extended-audit-instrumentation")
