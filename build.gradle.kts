@@ -29,7 +29,6 @@ plugins {
 }
 
 scmVersion {
-    tag.prefix = "extended-audit-instrumentation"
     versionCreator = VERSION_WITH_BRANCH.versionCreator
 }
 
