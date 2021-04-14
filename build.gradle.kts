@@ -128,10 +128,9 @@ publishing {
     publications {
         val publication = create<MavenPublication>("sonatype")
         project.shadow.component(publication)
-        artifacts {
-            tasks.named("javadocJar")
-            tasks.named("sourcesJar")
-        }
+        publication.artifact(tasks.named("javadocJar"))
+        publication.artifact(tasks.named("sourcesJar"))
+
         publication.pom {
             name.set("extended-audit-instrumentation")
             description.set("Graphql extended audit instrumentation")
