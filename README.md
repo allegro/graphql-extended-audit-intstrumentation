@@ -1,17 +1,38 @@
 graphql-audit
 =====
 ![Java CI with Gradle status](https://github.com/allegro/graphql-extended-audit-intstrumentation/actions/workflows/ci.yml/badge.svg?branch=master)
-![Maven Central](https://img.shields.io/maven-central/v/pl.allegro.tech.graphql/extended-audit-intstrumentation)
+![Maven Central](https://img.shields.io/maven-central/v/pl.allegro.tech.graphql/extended-audit-instrumentation)
 
 *graphql audit lib*
 
 GraphQL auditing is not out of the box feature. Our lib does all the works to instrument auditing.
 
+## Installation
+
+### Maven
+
+```xml
+<dependency>
+  <groupId>pl.allegro.tech.graphql</groupId>
+  <artifactId>extended-audit-instrumentation</artifactId>
+  <version>1.0.0</version>
+</dependency>
+
+``` 
+
+### Gradle
+
+```groovy
+dependecies {
+    implementation "pl.allegro.tech:extended-audit-instrumentation:1.0.0"
+}
+```
+
 ## Basic usage
 
 Use ``AuditLogInstrumentationBuilder`` to create Bean in your app.
 
-```
+```java
 @Configuration
 class AuditLogInstrumentationConfig {
 
@@ -38,7 +59,7 @@ You can provide your own implementation of ``AuditLogSender`` to sent logs somew
 
 Implement ``AuditLogSender``
 
-```
+```java
  /**
    * Enable sending audit log;
    *
@@ -55,7 +76,7 @@ Implement ``AuditLogSender``
 
 Implement interface ``UserProvider`` 
 
-```
+```java
   /**
    * Set user context provider.
    *
@@ -76,7 +97,7 @@ Thanks to it you can, for example, anonymize personal data in an audit log.
 
 Implement interface ``AnonymizedFieldsSetupProvider``
 
-```
+```java
   /**
    * Enable log anonymizer.
    *
@@ -98,7 +119,7 @@ For example, the client fetches the user's email, and we want that user's ID to 
 
 Implement interface ``AdditionalFieldsSetupProvider``
 
-```
+```java
   /**
    * Enable log additional field.
    *
