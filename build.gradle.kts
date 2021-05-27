@@ -56,7 +56,7 @@ dependencies {
     testImplementation("org.codehaus.groovy:groovy-all:3.0.7")
     testImplementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:3.10.2")
 
-    testImplementation("org.spockframework:spock-spring:2.0-M3-groovy-3.0")
+    testImplementation("org.spockframework:spock-spring:2.0-groovy-3.0")
     testImplementation("com.github.tomakehurst:wiremock-standalone:2.27.1")
 
     // Spring
