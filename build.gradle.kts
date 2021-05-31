@@ -48,7 +48,7 @@ dependencies {
     errorprone("com.google.errorprone:error_prone_core:2.5.1")
 
     // GraphQL
-    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:11.0.0")
+    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:11.1.0")
     implementation("com.graphql-java-kickstart:graphql-java-servlet:11.0.0")
 
     testImplementation("org.spockframework:spock-core:2.0-M3-groovy-3.0")
