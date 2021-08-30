@@ -38,7 +38,7 @@ repositories {
 
 dependencies {
     // Other
-    implementation("com.fasterxml.jackson.module:jackson-module-paranamer:2.11.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-paranamer:2.12.5")
     api("javax.xml.bind:jaxb-api:2.3.1")
     implementation("io.sentry:sentry-logback:1.7.28")
 
