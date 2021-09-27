@@ -61,7 +61,7 @@ dependencies {
 
     // Spring
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.4.3")
-    testImplementation("org.springframework.boot:spring-boot-starter-web:2.4.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
 }
 
 java {
