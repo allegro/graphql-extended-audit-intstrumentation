@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "name": "graphql-extended-audit-instrumentation",
+  "description": "Graphql extended audit instrumentation",
+  "engines": {
+    "node": ">=14.8.0"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "danger": "10.6.6",
+    "@commitlint/lint": "13.2.0",
+    "@commitlint/types": "13.2.0"
+  }
+}
