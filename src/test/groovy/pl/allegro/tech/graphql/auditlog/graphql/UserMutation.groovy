@@ -1,4 +1,4 @@
-package pl.allegro.tech.graphql.auditlog
+package pl.allegro.tech.graphql.auditlog.graphql
 
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsData

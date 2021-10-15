@@ -4,7 +4,10 @@ import com.netflix.graphql.dgs.DgsQueryExecutor
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.AnnotationConfigContextLoader
 import pl.allegro.tech.graphql.auditlog.config.AuditLogConfig
+import pl.allegro.tech.graphql.auditlog.graphql.UserDataFetcher
+import pl.allegro.tech.graphql.auditlog.graphql.UserMutation
 import pl.allegro.tech.graphql.auditlog.model.ResultData
+import pl.allegro.tech.graphql.auditlog.root.IntegrationSpec
 
 import javax.inject.Inject
 

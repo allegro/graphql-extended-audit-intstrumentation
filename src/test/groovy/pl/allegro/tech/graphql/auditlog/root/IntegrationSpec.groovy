@@ -1,4 +1,4 @@
-package pl.allegro.tech.graphql.auditlog
+package pl.allegro.tech.graphql.auditlog.root
 
 import com.netflix.graphql.dgs.autoconfig.DgsAutoConfiguration
 import groovy.transform.TypeChecked
@@ -7,6 +7,7 @@ import pl.allegro.tech.graphql.auditlog.config.AuditLogAdditionalFieldsConfig
 import pl.allegro.tech.graphql.auditlog.config.AuditLogAnonymizerConfig
 import pl.allegro.tech.graphql.auditlog.config.AuditLogInstrumentationConfig
 import pl.allegro.tech.graphql.auditlog.config.InMemoryAuditLogSenderConfig
+import pl.allegro.tech.graphql.auditlog.graphql.UserIdScalar
 import spock.lang.Specification
 
 import javax.inject.Inject

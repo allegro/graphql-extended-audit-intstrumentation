@@ -1,4 +1,7 @@
-package pl.allegro.tech.graphql.auditlog
+package pl.allegro.tech.graphql.auditlog.root
+
+import pl.allegro.tech.graphql.auditlog.AuditLogItem
+import pl.allegro.tech.graphql.auditlog.AuditLogSender
 
 class InMemoryAuditLogSender implements AuditLogSender {
 

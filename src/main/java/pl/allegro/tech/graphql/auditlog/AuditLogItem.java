@@ -10,7 +10,7 @@ import java.util.Objects;
 import pl.allegro.tech.graphql.auditlog.model.ResultData;
 import pl.allegro.tech.graphql.auditlog.model.UserId;
 
-class AuditLogItem {
+public class AuditLogItem {
 
   private final String id;
   private final List<Operation> operations;
