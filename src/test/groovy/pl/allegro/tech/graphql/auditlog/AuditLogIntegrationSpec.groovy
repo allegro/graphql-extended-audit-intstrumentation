@@ -3,6 +3,7 @@ package pl.allegro.tech.graphql.auditlog
 import com.netflix.graphql.dgs.DgsQueryExecutor
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.AnnotationConfigContextLoader
+import pl.allegro.tech.graphql.auditlog.config.AuditLogConfig
 import pl.allegro.tech.graphql.auditlog.model.ResultData
 
 import javax.inject.Inject

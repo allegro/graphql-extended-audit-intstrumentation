@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.allegro.tech.graphql.auditlog.model.ResultData;
 
-class AuditLogAdditionalFieldFetcher {
+public class AuditLogAdditionalFieldFetcher {
 
   private static final Logger logger =
       LoggerFactory.getLogger(AuditLogAdditionalFieldFetcher.class);

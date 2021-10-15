@@ -9,7 +9,7 @@ import pl.allegro.tech.graphql.auditlog.model.ResultData;
 import pl.allegro.tech.graphql.auditlog.model.ResultData.ArrayResultData;
 import pl.allegro.tech.graphql.auditlog.model.ResultData.ObjectResultData;
 
-class AuditLogAnonymizer {
+public class AuditLogAnonymizer {
 
   private final AnonymizedFieldsSetupPreconditions anonymizedFieldsSetupChecker;
 
