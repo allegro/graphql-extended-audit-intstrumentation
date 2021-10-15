@@ -1,4 +1,4 @@
-package pl.allegro.tech.graphql.auditlog
+package pl.allegro.tech.graphql.auditlog.config
 
 
 import com.netflix.graphql.dgs.internal.DgsSchemaProvider

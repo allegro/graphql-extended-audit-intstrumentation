@@ -40,7 +40,7 @@ import pl.allegro.tech.graphql.auditlog.AuditLogItem.OperationType;
 import pl.allegro.tech.graphql.auditlog.model.ResultData;
 import pl.allegro.tech.graphql.auditlog.model.UserId;
 
-class AuditLogInstrumentation extends SimpleInstrumentation {
+public class AuditLogInstrumentation extends SimpleInstrumentation {
 
   private static final Logger logger = LoggerFactory.getLogger(
       AuditLogInstrumentation.class);
