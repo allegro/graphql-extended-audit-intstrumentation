@@ -49,12 +49,12 @@ if(body === null) {
     fail('PR needs to have description!')
 }
 
-const report = await lint(body, defaultRules)
+lint(body, defaultRules).then((report) => {
+    report.warnings.forEach((warning) => {
+        warn(violationsDescriptions[warning.name])
+    });
 
-report.warnings.forEach((warning) => {
-    warn(violationsDescriptions[warning.name])
-});
-
-report.errors.forEach((error) => {
-    fail(violationsDescriptions[error.name])
+    report.errors.forEach((error) => {
+        fail(violationsDescriptions[error.name])
+    });
 });
