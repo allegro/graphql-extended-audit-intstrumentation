@@ -43,18 +43,27 @@ const violationsDescriptions = {
         '`build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`',
 }
 
+const ERROR_HEADER = "❌ FAILURE. Found commit rules violations! Errors:"
 const body = danger.github.pr.body;
 
 if(body === null) {
-    fail('PR needs to have description!')
+    console.log(`${ERROR_HEADER}\n❌ ERROR: PR needs to have description!`)
+    fail(`PR description needed`)
+} else {
+    lint(body, defaultRules).then((report) => {
+        if (report.warnings.length !== 0) {
+            console.log("❗ Warnings:")
+            report.warnings.forEach((warning) => {
+                console.log(`❗ ${violationsDescriptions[warning.name]}`)
+            });
+        }
+
+        if (report.errors.length !== 0) {
+            console.log(ERROR_HEADER)
+            report.errors.forEach((error) => {
+                console.log(`❌ ${violationsDescriptions[error.name]}`)
+            });
+            fail(`Errors found`)
+        }
+    });
 }
-
-lint(body, defaultRules).then((report) => {
-    report.warnings.forEach((warning) => {
-        warn(violationsDescriptions[warning.name])
-    });
-
-    report.errors.forEach((error) => {
-        fail(violationsDescriptions[error.name])
-    });
-});
