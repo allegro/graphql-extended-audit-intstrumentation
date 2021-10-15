@@ -105,7 +105,7 @@ tasks.named("check") {
 }
 
 tasks.withType<Wrapper> {
-    gradleVersion = "6.8.3"
+    gradleVersion = "7.2"
 }
 
 tasks.create<ConfigureShadowRelocation>("relocateShadowJar") {
