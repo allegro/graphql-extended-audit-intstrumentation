@@ -1,4 +1,4 @@
-package pl.allegro.tech.graphql.auditlog
+package pl.allegro.tech.graphql.auditlog.graphql
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty

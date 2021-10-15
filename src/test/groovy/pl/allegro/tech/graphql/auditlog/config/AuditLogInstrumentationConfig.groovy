@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import pl.allegro.tech.graphql.auditlog.AuditLogInstrumentation
 import pl.allegro.tech.graphql.auditlog.AuditLogInstrumentationBuilder
-import pl.allegro.tech.graphql.auditlog.InMemoryAuditLogSender
+import pl.allegro.tech.graphql.auditlog.root.InMemoryAuditLogSender
 
 @Configuration
 class AuditLogInstrumentationConfig {
