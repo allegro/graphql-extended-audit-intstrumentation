@@ -2,7 +2,10 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocatio
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.ltgt.gradle.errorprone.errorprone
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent.*
+import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_ERROR
 import pl.allegro.tech.build.axion.release.domain.PredefinedVersionCreator.VERSION_WITH_BRANCH
 import java.time.Duration
 
@@ -21,7 +24,7 @@ plugins {
     id("com.adarshr.test-logger") version "3.0.0"
     id("net.ltgt.errorprone") version "1.3.0"
     id("pl.allegro.tech.build.axion-release") version "1.13.2"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.0"
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     id ("org.barfuin.gradle.taskinfo") version "1.0.5"
     signing
@@ -38,9 +41,9 @@ repositories {
 
 dependencies {
     // Other
-    implementation("com.fasterxml.jackson.module:jackson-module-paranamer:2.11.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-paranamer:2.13.0")
     api("javax.xml.bind:jaxb-api:2.3.1")
-    implementation("io.sentry:sentry-logback:1.7.28")
+    implementation("io.sentry:sentry-logback:5.2.3")
 
     implementation("io.vavr:vavr:0.10.3")
     implementation("javax.inject:javax.inject:1")
@@ -56,12 +59,12 @@ dependencies {
     testImplementation("org.codehaus.groovy:groovy-all:3.0.7")
     testImplementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:3.10.2")
 
-    testImplementation("org.spockframework:spock-spring:2.0-M3-groovy-3.0")
+    testImplementation("org.spockframework:spock-spring:2.0-groovy-3.0")
     testImplementation("com.github.tomakehurst:wiremock-standalone:2.27.1")
 
     // Spring
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.4.3")
-    testImplementation("org.springframework.boot:spring-boot-starter-web:2.4.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
 }
 
 java {
