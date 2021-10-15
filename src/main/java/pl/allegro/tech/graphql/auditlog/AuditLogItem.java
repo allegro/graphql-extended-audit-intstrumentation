@@ -12,7 +12,7 @@ import pl.allegro.tech.graphql.auditlog.model.UserId;
 
 class AuditLogItem {
 
-  private final  String id;
+  private final String id;
   private final List<Operation> operations;
   private final List<ResultData> resultData;
   private final List<Map<String, Object>> errors;
@@ -69,7 +69,7 @@ class AuditLogItem {
     if (this == o) {
       return true;
     }
-    if (o == null || getClass() != o.getClass()) {
+    if (!(o instanceof AuditLogItem)) {
       return false;
     }
     AuditLogItem that = (AuditLogItem) o;
@@ -114,7 +114,7 @@ class AuditLogItem {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof Operation)) {
         return false;
       }
       Operation operation = (Operation) o;
