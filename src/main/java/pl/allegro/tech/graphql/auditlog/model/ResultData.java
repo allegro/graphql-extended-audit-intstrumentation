@@ -53,7 +53,7 @@ public interface ResultData {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof ScalarResultData)) {
         return false;
       }
       ScalarResultData that = (ScalarResultData) o;
@@ -109,7 +109,7 @@ public interface ResultData {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof ObjectResultData)) {
         return false;
       }
       ObjectResultData that = (ObjectResultData) o;
@@ -160,7 +160,7 @@ public interface ResultData {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof ArrayResultData)) {
         return false;
       }
       ArrayResultData that = (ArrayResultData) o;
@@ -205,7 +205,7 @@ public interface ResultData {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof NullResultData)) {
         return false;
       }
       NullResultData that = (NullResultData) o;
@@ -253,7 +253,7 @@ public interface ResultData {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof AnonymizedResultData)) {
         return false;
       }
       AnonymizedResultData that = (AnonymizedResultData) o;
@@ -302,7 +302,7 @@ public interface ResultData {
       if (this == o) {
         return true;
       }
-      if (o == null || getClass() != o.getClass()) {
+      if (!(o instanceof IntrospectionResultData)) {
         return false;
       }
       IntrospectionResultData that = (IntrospectionResultData) o;
