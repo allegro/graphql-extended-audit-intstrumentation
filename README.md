@@ -5,7 +5,7 @@ graphql-audit
 
 *graphql audit lib*
 
-GraphQL auditing is not out of the box feature. Our lib does all the works to instrument auditing.
+GraphQL auditing is not an out of the box feature. Our lib does all the work to instrument auditing.
 
 ## Installation
 
@@ -51,11 +51,11 @@ class AuditLogInstrumentationConfig {
 
 ## Additional configuration
 
-GraphQL audit creator can take extra option like
+GraphQL audit creator can take extra options like
 
 ### Custom audit log destination data source
 
-You can provide your own implementation of ``AuditLogSender`` to sent logs somewhere (i.e. database, event queue, or a file).
+You can provide your own implementation of ``AuditLogSender`` to send logs somewhere (i.e. database, event queue, or a file).
 
 Implement ``AuditLogSender``
 
