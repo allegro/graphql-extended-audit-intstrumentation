@@ -23,7 +23,7 @@ plugins {
     id("java-library")
     id("com.adarshr.test-logger") version "3.0.0"
     id("net.ltgt.errorprone") version "2.0.0"
-    id("pl.allegro.tech.build.axion-release") version "1.13.2"
+    id("pl.allegro.tech.build.axion-release") version "1.14.0"
     id("com.github.johnrengelman.shadow") version "7.1.0"
     id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
     id ("org.barfuin.gradle.taskinfo") version "1.0.5"
