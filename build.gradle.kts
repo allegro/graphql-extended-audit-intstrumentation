@@ -43,7 +43,7 @@ dependencies {
     // Other
     implementation("com.fasterxml.jackson.module:jackson-module-paranamer:2.13.0")
     api("javax.xml.bind:jaxb-api:2.3.1")
-    implementation("io.sentry:sentry-logback:1.7.28")
+    implementation("io.sentry:sentry-logback:6.5.0")
 
     implementation("io.vavr:vavr:0.10.3")
     implementation("javax.inject:javax.inject:1")
